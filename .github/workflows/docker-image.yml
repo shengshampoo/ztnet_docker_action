@@ -1,0 +1,35 @@
+name: Docker Ztnet Image CI - X86_64 for alpine Linux
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build this ztnet Docker image
+      run: |
+        git clone https://github.com/sinamics/ztnet.git
+        cd ztnet
+        rm Dockerfile
+        curl -L -o Dockerfile https://gist.githubusercontent.com/shengshampoo/46f573b7c715c7a00e1dde8df35fabc1/raw/99af7e76d553001d27e28d03794268eea9e64458/ztnet_Dockerfile.alpine
+        docker build --tag ztnetnn .
+
+    - name: save ztnet docker image 
+      run: |
+        docker save ztnetnn -o ztnetnn.tar
+        xz -e9 ztnetnn.tar
+        
+
+    - name: Upload static program
+      uses: actions/upload-artifact@v4
+      with:
+        name: ztnetnn
+        path: ./ztnetnn.tar.xz
