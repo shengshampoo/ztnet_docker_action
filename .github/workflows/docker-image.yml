@@ -10,7 +10,10 @@ jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v4
@@ -18,9 +21,8 @@ jobs:
       run: |
         git clone https://github.com/sinamics/ztnet.git
         cd ztnet
-        rm Dockerfile
-        curl -L -o Dockerfile https://gist.githubusercontent.com/shengshampoo/46f573b7c715c7a00e1dde8df35fabc1/raw/99af7e76d553001d27e28d03794268eea9e64458/ztnet_Dockerfile.alpine
-        docker build --tag ztnetnn .
+        curl -LO https://gist.githubusercontent.com/shengshampoo/46f573b7c715c7a00e1dde8df35fabc1/raw/99af7e76d553001d27e28d03794268eea9e64458/ztnet_Dockerfile.alpine
+        docker build -f ztnet_Dockerfile.alpine --tag ztnetnn .
 
     - name: save ztnet docker image 
       run: |
@@ -31,5 +33,5 @@ jobs:
     - name: Upload static program
       uses: actions/upload-artifact@v4
       with:
-        name: ztnetnn
+        name: ztnetnn-${{ matrix.os }}
         path: ./ztnetnn.tar.xz
