@@ -1,4 +1,4 @@
-name: Docker Ztnet Image CI - X86_64 for alpine Linux
+name: Docker Ztnet Image CI - X86_64/AARCH64 for alpine Linux
 
 on:
   push:
