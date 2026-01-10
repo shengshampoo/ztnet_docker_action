@@ -23,7 +23,7 @@ jobs:
       run: |
         git clone https://github.com/sinamics/ztnet.git
         cd ztnet
-        curl -LO https://gist.githubusercontent.com/shengshampoo/46f573b7c715c7a00e1dde8df35fabc1/raw/472ae5064ec92a982d216f73891fa1ddeb1e6121/ztnet_Dockerfile.alpine
+        curl -LO https://gist.githubusercontent.com/shengshampoo/46f573b7c715c7a00e1dde8df35fabc1/raw/f3b26c47c828cb8ea8088c200b142f2ce28d98e7/ztnet_Dockerfile.alpine
         docker build -f ztnet_Dockerfile.alpine --tag ztnetnn .
 
     - name: save ztnet docker image 
