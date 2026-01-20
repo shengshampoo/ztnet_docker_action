@@ -1,5 +1,5 @@
 # https://github.com/sinamics/ztnet
-ARG NODEJS_IMAGE=caomeiyouren/alpine-nodejs:alpine3-node
+ARG NODEJS_IMAGE=caomeiyouren/alpine-nodejs:alpine3-node24
 FROM --platform=$BUILDPLATFORM $NODEJS_IMAGE AS base
 
 # Install dependencies only when needed
