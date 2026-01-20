@@ -44,5 +44,5 @@ jobs:
           file: ./ztnet_Dockerfile.alpine
           push: true
           tags: | 
-            ghcr.io/shengshampoo/ztnet:latest
+            ghcr.io/shengshampoo/ztnetnn:latest
           platforms: linux/amd64,linux/arm64
