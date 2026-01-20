@@ -1,8 +1,12 @@
 name: Build and Push Image to GHCR
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  # run it manually
+  workflow_dispatch:    
 
 env:
   REGISTRY: ghcr.io
